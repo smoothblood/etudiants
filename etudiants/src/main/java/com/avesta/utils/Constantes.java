@@ -9,8 +9,8 @@ public interface Constantes {
 	static final String ETUDIANT_FORM_MAPPING = "/formEtudiant";
 	static final String ETUDIANT_LIST_MAPPING = "/listEtudiant";
 	static final String ETUDIANT_SEARCH_MAPPING = "/searchEtudiant";
-	static final String ETUDIANT_ADD_MAPPING = "/addEtudiant";
-	static final String ETUDIANT_UPDATE_MAPPING = "/updateEtudiant";
+	static final String ETUDIANT_ADD_FORM_MAPPING = "/addFormEtudiant";
+	static final String ETUDIANT_UPDATE_FORM_MAPPING = "/updateFormEtudiant";
 	static final String ETUDIANT_DELETE_MAPPING = "/deleteEtudiant";
 	
 	static final String ERROR = "error";

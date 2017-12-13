@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.avesta.service.EtudiantService;
 import com.avesta.utils.AppUtils;
 import com.avesta.utils.Constantes;
+import com.avesta.validator.EtudiantValidator;
 import com.avesta.vo.EtudiantVO;
 
 @Controller
@@ -27,12 +28,17 @@ public class EtudiantController {
 	private MessageSource messageSource;
 	@Autowired
 	private EtudiantService etudiantService;
+	@Autowired
+	private EtudiantValidator etudiantValidator;
 	
 	public void setEtudiantService(EtudiantService etudiantService) {
 		this.etudiantService = etudiantService;
 	}
 	public void setMessageSource(MessageSource messageSource) {
 		this.messageSource = messageSource;
+	}
+	public void setEtudiantValidator(EtudiantValidator etudiantValidator) {
+		this.etudiantValidator = etudiantValidator;
 	}
 	
 	
@@ -54,8 +60,8 @@ public class EtudiantController {
 	}
 	
 	
-	@RequestMapping(value = {Constantes.ETUDIANT_FORM_MAPPING}, method = RequestMethod.GET)
-	public String formEtudiant(ModelMap model) {
+	@RequestMapping(value = {Constantes.ETUDIANT_ADD_FORM_MAPPING}, method = RequestMethod.GET)
+	public String gotoAddFormEtudiant(ModelMap model) {
 		EtudiantVO etudiantVO = new EtudiantVO();
 		try {
 			final String numEtdToBrAdded = etudiantService.getNumEtdToBeAdded();
@@ -71,9 +77,10 @@ public class EtudiantController {
 	}
 	
 	
-	@RequestMapping(value = {Constantes.ETUDIANT_FORM_MAPPING}, method = RequestMethod.POST)
-	public String formAddEtudiant(@Valid EtudiantVO etudiantVO, BindingResult result, ModelMap model) {
+	@RequestMapping(value = {Constantes.ETUDIANT_ADD_FORM_MAPPING}, method = RequestMethod.POST)
+	public String addFormEtudiant(@Valid EtudiantVO etudiantVO, BindingResult result, ModelMap model) {
 		try {
+//			etudiantValidator.validate(etudiantVO, result);
 			if (result.hasErrors()) {
 				model.addAttribute(Constantes.ETUDIANT, etudiantVO);
 				model.addAttribute(Constantes.EDIT, false);
@@ -98,6 +105,7 @@ public class EtudiantController {
 		}
 		return listEtudiant(model);
 	}
+	
 	
 	
 }

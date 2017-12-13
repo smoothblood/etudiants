@@ -35,17 +35,17 @@
 				<tr>
 					<td><form:label path="numEtd"><spring:message code="etudiant.col.numEtd" text="etudiant.col.numEtd"/>:&nbsp;</form:label></td>
 					<td><form:input path="numEtd" readonly="${edit }"/></td>
-					<td><form:errors path="numEtd" /></td>
+					<td><form:errors path="numEtd"/></td>
 				</tr>
 				<tr>
 					<td><form:label path="nom"><spring:message code="etudiant.col.nom" text="etudiant.col.nom"/>:&nbsp;</form:label></td>
 					<td><form:input path="nom" /></td>
-					<td><form:errors path="nom" /></td>
+					<td><form:errors path="nom"/></td>
 				</tr>
 				<tr>
 					<td><form:label path="prenom"><spring:message code="etudiant.col.prenom" text="etudiant.col.prenom"/>:&nbsp;</form:label></td>
 					<td><form:input path="prenom" /></td>
-					<td><form:errors path="prenom" /></td>
+					<td><form:errors path="prenom" cssClass="error"/></td>
 				</tr>
 				<tr>
 					<td>

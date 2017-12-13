@@ -59,7 +59,7 @@ public class EtudiantServiceImpl implements EtudiantService {
 	public String getNumEtdToBeAdded() {
 		String numEtdMax = etudiantDao.getMaxNumEtd();
 		String numEtdToBeAddes = "NUM001";
-		if (numEtdMax != null && "".equalsIgnoreCase(numEtdMax)) {
+		if (numEtdMax != null && !"".equalsIgnoreCase(numEtdMax)) {
 			int numEtdInt = Integer.parseInt( numEtdMax.substring(3, numEtdMax.length()) );
 			numEtdToBeAddes = String.format("NUM%03d", (++numEtdInt));
 		}

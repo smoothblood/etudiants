@@ -81,8 +81,8 @@ textarea {
 }
 
 .margin { margin: 12px }
-.error { color: red; }
-.warning { color: orange; }
-.message { color: green; }
+.error { color: #ff0000; font-style: italic; font-weight: bold}
+.warning { color: orange; font-style: italic; font-weight: bold}
+.message { color: green; font-style: italic; font-weight: bold}
 .update {color: orange; font-weight: bold;}
-.delete {color: red; font-weight: bold;}
+.delete {color: #ff0000; font-weight: bold;}

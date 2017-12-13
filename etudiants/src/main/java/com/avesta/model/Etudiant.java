@@ -13,6 +13,7 @@ import javax.persistence.Table;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.hibernate.annotations.Type;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.joda.time.LocalDateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -22,13 +23,16 @@ public class Etudiant {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
+	@NotEmpty
 	@Column(name="NUM_ETD", nullable = false)
 	private String numEtd;
 	
+	@NotEmpty
 	@Column(name="NOM", nullable = false)
 	private String nom;
 	
+	@NotEmpty
 	@Column(name="PRENOM", nullable = false)
 	private String prenom;
 
