@@ -20,6 +20,7 @@ public interface Constantes {
 	static final String EMPTY_STR = "";
 	static final String EMPTY_SPACE = " ";
 	static final String POINT = ".";
+	static final String TWO_POINT = ":";
 	static final String VIRGULE = ",";
 	static final String SLASH = "/";
 	static final String AS = "as";

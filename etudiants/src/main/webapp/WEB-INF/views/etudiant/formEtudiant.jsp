@@ -8,13 +8,13 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=windows-1256">
-		<!-- <link rel="icon" type="image/png" href="logo.png" /> -->
-		<title><spring:message code="student.title.header" text="student.title.header"/></title>
+		<!-- <link rel="icon" type="image/png" href="resources/images/logo.png" /> -->
+		<title><spring:message code="etudiant.app.header" text="etudiant.app.header"/></title>
 		<link rel="stylesheet" type="text/css" href="resources/css/style.css" />
 	</head>
 	<body>
 		<h2>
-			<spring:message code="student.title.form" text="student.title.form" />
+			<spring:message code="etudiant.title.form" text="etudiant.title.form" />
 		</h2>
 		<jsp:include page="../menu.jsp" />
 		
