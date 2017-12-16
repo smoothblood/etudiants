@@ -12,6 +12,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+import com.avesta.utils.Constantes;
+
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "com.avesta")
@@ -35,6 +37,9 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 	public MessageSource messageSource() {
 		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
 		messageSource.setBasename("messages");
+		messageSource.setUseCodeAsDefaultMessage(true);
+//		messageSource.setDefaultEncoding(Constantes.UTF8);
+		messageSource.setCacheSeconds(0);
 		return messageSource;
 	}
 }

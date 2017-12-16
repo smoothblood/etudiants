@@ -20,4 +20,6 @@ public interface EtudiantService {
 	
 	String getNumEtdToBeAdded();
 	
+	Boolean isEtudiantExistByNum(final String numEtd);
+	
 }

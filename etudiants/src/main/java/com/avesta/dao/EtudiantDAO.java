@@ -20,4 +20,6 @@ public interface EtudiantDAO {
 	
 	String getMaxNumEtd();
 	
+	Object isEtudiantExistByNum(final String numEtd);
+	
 }

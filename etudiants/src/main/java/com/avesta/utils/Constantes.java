@@ -22,9 +22,12 @@ public interface Constantes {
 	static final String POINT = ".";
 	static final String TWO_POINT = ":";
 	static final String VIRGULE = ",";
+	static final String APOSTROPHE = "'";
 	static final String SLASH = "/";
 	static final String AS = "as";
 	static final String EDIT = "edit";
+	static final String ACTION = "action";
+	static final String UTF8 = "UTF-8";
 	
 	static final String ETUDIANT = "etudiant";
 	static final String LIST_ETUDIANT = "listEtudiant";

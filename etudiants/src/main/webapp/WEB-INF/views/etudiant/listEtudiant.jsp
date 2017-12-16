@@ -36,8 +36,8 @@
 					<td><c:out value="${etudiant.updatedDateString }" /></td>
 					<td><c:out value="${etudiant.updatedDateString }" /></td>
 					<td>
-						<a class="update" href="<c:url value='/updateEtudiant/${etudiant.numEtd }'/>">EDIT</a>&nbsp;&nbsp;
-						<a class="delete" href="<c:url value='/deleteEtudiant/${etudiant.numEtd }'/>">SUPP</a>
+						<a class="update" href="<c:url value='/updateFormEtudiant?numEtd=${etudiant.numEtd }'/>">EDIT</a>&nbsp;&nbsp;
+						<a class="delete" href="<c:url value='/deleteEtudiant?numEtd=${etudiant.numEtd }'/>">SUPP</a>
 					</td>
 				</tr>
 			</c:forEach>

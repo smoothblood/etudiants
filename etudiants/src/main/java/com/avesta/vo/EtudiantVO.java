@@ -63,7 +63,8 @@ public class EtudiantVO {
 		sb.append(localDate.getMonthOfYear()).append(Constantes.SLASH);
 		sb.append(localDate.getYear()).append(Constantes.EMPTY_SPACE);
 		sb.append(localDate.getHourOfDay()).append(Constantes.TWO_POINT);
-		sb.append(localDate.getMinuteOfHour());
+		sb.append(localDate.getMinuteOfHour()).append(Constantes.TWO_POINT);
+		sb.append(localDate.getSecondOfMinute());
 		return sb.toString();
 	}
 	

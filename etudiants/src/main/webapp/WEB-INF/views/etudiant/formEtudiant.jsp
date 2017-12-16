@@ -19,28 +19,30 @@
 		<jsp:include page="../menu.jsp" />
 		
 		<h3>
-			<c:choose>
-				<c:when test="${edit }">
-					<spring:message code="etudiant.title.update" text="etudiant.title.update" />
-				</c:when>
-				<c:otherwise>
-					<spring:message code="etudiant.title.add" text="etudiant.title.add" />
-				</c:otherwise>
-			</c:choose>
+			<span style="text-decoration: underline;">
+				<c:choose>
+					<c:when test="${edit }">
+						<spring:message code="etudiant.title.update" text="etudiant.title.update" />
+					</c:when>
+					<c:otherwise>
+						<spring:message code="etudiant.title.add" text="etudiant.title.add" />
+					</c:otherwise>
+				</c:choose>
+			</span>
 		</h3>
 		
-		<form:form method="POST" modelAttribute="etudiant">
+		<form:form method="POST" modelAttribute="etudiant" action="${pageContext.request.contextPath }${action }">
 			<form:hidden path="id"/>
 			<table>
 				<tr>
 					<td><form:label path="numEtd"><spring:message code="etudiant.col.numEtd" text="etudiant.col.numEtd"/>:&nbsp;</form:label></td>
-					<td><form:input path="numEtd" readonly="${edit }"/></td>
-					<td><form:errors path="numEtd"/></td>
+					<td><form:input path="numEtd" readonly="true"/></td>
+					<td><form:errors path="numEtd" cssClass="error"/></td>
 				</tr>
 				<tr>
 					<td><form:label path="nom"><spring:message code="etudiant.col.nom" text="etudiant.col.nom"/>:&nbsp;</form:label></td>
 					<td><form:input path="nom" /></td>
-					<td><form:errors path="nom"/></td>
+					<td><form:errors path="nom" cssClass="error"/></td>
 				</tr>
 				<tr>
 					<td><form:label path="prenom"><spring:message code="etudiant.col.prenom" text="etudiant.col.prenom"/>:&nbsp;</form:label></td>

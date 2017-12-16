@@ -62,22 +62,32 @@ public class EtudiantDAOImpl implements EtudiantDAO {
 
 	@Override
 	public int updateEtudiant(EtudiantVO etudiantVO) {
-		// TODO Auto-generated method stub
+		Etudiant etudiant = (Etudiant) sessionFactory.getCurrentSession().get(Etudiant.class, etudiantVO.getId());
+		if (etudiant != null) {
+			etudiant.setNom(etudiantVO.getNom());
+			etudiant.setPrenom(etudiantVO.getPrenom());
+			etudiant.setUpdatedDate(LocalDateTime.now());
+			sessionFactory.getCurrentSession().update(etudiant);
+			return 1;
+		}
 		return 0;
 	}
 
 	@Override
 	public int deleteEtudiant(String numEtd) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sessionFactory.getCurrentSession().createQuery("delete from Etudiant where numEtd = :numEtd").setParameter("numEtd", numEtd).executeUpdate();
 	}
 	
 	@Override
 	public String getMaxNumEtd() {
-		StringBuilder hql = new StringBuilder("select numEtd from Etudiant order by numEtd desc");
-		return (String) sessionFactory.getCurrentSession().createQuery(hql.toString()).setMaxResults(1).uniqueResult();
+		return (String) sessionFactory.getCurrentSession().createQuery("select numEtd from Etudiant order by numEtd desc").setMaxResults(1).uniqueResult();
 	}
 
+	@Override
+	public Object isEtudiantExistByNum(String numEtd) {
+		return sessionFactory.getCurrentSession().createQuery("select 1 from Etudiant where numEtd = :numEtd").setParameter("numEtd", numEtd).uniqueResult();
+	}
+	
 	/**
 	 * Description: Méthode récupére une liste des colonnes de la table "Etudiant" sous une chaine de caractère 
 	 * Date création: 9 déc. 2017 20:45:00 
@@ -101,12 +111,10 @@ public class EtudiantDAOImpl implements EtudiantDAO {
 			}
 		}
 		// supprimer la dérnier virgule
-		if (sbColumns.length() > 0) {
+		if (sbColumns.length() > 0 && Constantes.VIRGULE.equalsIgnoreCase( String.valueOf((sbColumns.charAt(sbColumns.length()-1)))) ) {
 			sbColumns.deleteCharAt(sbColumns.length() - 1);
 		}
 		return sbColumns.toString();
 	}
-
-	
 
 }

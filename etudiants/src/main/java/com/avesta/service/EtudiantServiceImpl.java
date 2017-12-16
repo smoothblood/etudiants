@@ -22,7 +22,6 @@ public class EtudiantServiceImpl implements EtudiantService {
 		this.etudiantDao = etudiantDao;
 	}
 
-	
 	@Override
 	public List<EtudiantVO> getAllEtudiants() {
 		return etudiantDao.getAllEtudiants();
@@ -54,6 +53,10 @@ public class EtudiantServiceImpl implements EtudiantService {
 		return etudiantDao.deleteEtudiant(numEtd);
 	}
 
+	@Override
+	public Boolean isEtudiantExistByNum(String numEtd) {
+		return etudiantDao.isEtudiantExistByNum(numEtd) != null;
+	}
 
 	@Override
 	public String getNumEtdToBeAdded() {
