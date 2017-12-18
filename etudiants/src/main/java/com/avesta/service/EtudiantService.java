@@ -1,6 +1,9 @@
 package com.avesta.service;
 
 import java.util.List;
+import java.util.Map;
+
+import org.springframework.context.MessageSource;
 
 import com.avesta.vo.EtudiantVO;
 
@@ -21,5 +24,9 @@ public interface EtudiantService {
 	String getNumEtdToBeAdded();
 	
 	Boolean isEtudiantExistByNum(final String numEtd);
+	
+	Map<String, String> getCriteriaSearch(MessageSource messageSource);
+	
+	List<EtudiantVO> getEtudiantByCriteria(final String searchField, final String criteriaSearch);
 	
 }

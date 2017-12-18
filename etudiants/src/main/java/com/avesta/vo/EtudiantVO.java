@@ -12,6 +12,8 @@ public class EtudiantVO {
 	private String prenom;
 	private LocalDateTime createdDate;
 	private LocalDateTime updatedDate;
+	private String searchField;
+	private String criteriaSearch;
 	
 	public int getId() {
 		return id;
@@ -55,16 +57,28 @@ public class EtudiantVO {
 	public void setUpdatedDate(LocalDateTime updatedDate) {
 		this.updatedDate = updatedDate;
 	}
-
+	public String getSearchField() {
+		return searchField;
+	}
+	public void setSearchField(String searchField) {
+		this.searchField = searchField;
+	}
+	public String getCriteriaSearch() {
+		return criteriaSearch;
+	}
+	public void setCriteriaSearch(String criteriaSearch) {
+		this.criteriaSearch = criteriaSearch;
+	}
+	
 	// Récuperer la date en format de chaine de caractére
 	private String getFormatDate(final LocalDateTime localDate) {
 		StringBuilder sb = new StringBuilder();
-		sb.append(localDate.getDayOfMonth()).append(Constantes.SLASH);
-		sb.append(localDate.getMonthOfYear()).append(Constantes.SLASH);
+		sb.append(String.format("%02d", localDate.getDayOfMonth())).append(Constantes.SLASH);
+		sb.append(String.format("%02d", localDate.getMonthOfYear())).append(Constantes.SLASH);
 		sb.append(localDate.getYear()).append(Constantes.EMPTY_SPACE);
-		sb.append(localDate.getHourOfDay()).append(Constantes.TWO_POINT);
-		sb.append(localDate.getMinuteOfHour()).append(Constantes.TWO_POINT);
-		sb.append(localDate.getSecondOfMinute());
+		sb.append(String.format("%02d", localDate.getHourOfDay())).append(Constantes.TWO_POINT);
+		sb.append(String.format("%02d", localDate.getMinuteOfHour())).append(Constantes.TWO_POINT);
+		sb.append(String.format("%02d", localDate.getSecondOfMinute()));
 		return sb.toString();
 	}
 	

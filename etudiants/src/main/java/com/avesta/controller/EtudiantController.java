@@ -1,7 +1,9 @@
 package com.avesta.controller;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -11,7 +13,6 @@ import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -92,7 +93,7 @@ public class EtudiantController {
 			if (etudiantService.isEtudiantUnique(etudiantVO.getNumEtd())) {
 				int returnedIdValue = etudiantService.ajoutEtudiant(etudiantVO);
 				if (returnedIdValue != 0) {
-					model.addAttribute(Constantes.MESSAGE, AppUtils.getMessage(messageSource, "etudiant.add.success", etudiantVO.getNumEtd()));
+					model.addAttribute(Constantes.MESSAGE, AppUtils.getMessage(messageSource, "etudiant.add.success", etudiantVO.getNom(), etudiantVO.getPrenom()));
 				} else {
 					model.addAttribute(Constantes.ERROR, AppUtils.getMessage(messageSource, "etudiant.add.fail", etudiantVO.getNumEtd()));
 				}
@@ -182,5 +183,61 @@ public class EtudiantController {
 		}
 		return listEtudiant(model);
 	}
+	
+	
+	@RequestMapping(value = Constantes.ETUDIANT_SEARCH_MAPPING, method = RequestMethod.GET)
+	public String gotoSearchEtudiant(ModelMap model) {
+		EtudiantVO etudiantVO = new EtudiantVO();
+		Map<String, String> mapCriteriaSearch = new LinkedHashMap<>();
+		try {
+			mapCriteriaSearch = etudiantService.getCriteriaSearch(messageSource);
+		} catch (Exception e) {
+			model.addAttribute(Constantes.ERROR, AppUtils.getMessage(messageSource, "etudiant.error.search", e.getCause().getMessage()+"<br"+e.getMessage()));
+			e.printStackTrace();
+		} finally {
+			model.addAttribute(Constantes.ETUDIANT, etudiantVO);
+			model.addAttribute(Constantes.CRITERIA_SEARCH, mapCriteriaSearch);
+			model.addAttribute(Constantes.ACTION, Constantes.ETUDIANT_SEARCH_MAPPING);
+		}
+		return Constantes.ETUDIANT_SEARCH_PAGE;
+	}
+	
+	
+	@RequestMapping(value = Constantes.ETUDIANT_SEARCH_MAPPING, method = RequestMethod.POST)
+	public String searchEtudiant(@Valid EtudiantVO etudiantVO, BindingResult result, ModelMap model) {
+		Map<String, String> mapCriteriaSearch = new LinkedHashMap<>();
+		try {
+			String searchField = etudiantVO.getSearchField();
+			String criteriaSearch = etudiantVO.getCriteriaSearch();
+			mapCriteriaSearch = etudiantService.getCriteriaSearch(messageSource);
+			if (!Constantes.EMPTY_STR.equalsIgnoreCase(searchField.trim())) {
+				if (!Constantes.NONE.equalsIgnoreCase(criteriaSearch)) {
+					List<EtudiantVO> listEtudiant = etudiantService.getEtudiantByCriteria(searchField, criteriaSearch);
+					if (listEtudiant != null && !listEtudiant.isEmpty()) {
+						model.addAttribute(Constantes.LIST_ETUDIANT, listEtudiant);
+						model.addAttribute(Constantes.MESSAGE, AppUtils.getMessage(messageSource, "etudiant.search.success", searchField, criteriaSearch, listEtudiant.size()));
+					} else {
+						model.addAttribute(Constantes.WARNING, AppUtils.getMessage(messageSource, "etudiant.warning.empty.search", searchField, mapCriteriaSearch.get(criteriaSearch)));
+					}
+				} else {
+					model.addAttribute(Constantes.WARNING, AppUtils.getMessage(messageSource, "etudiant.warning.criteria.search"));
+				}
+			} else {
+				model.addAttribute(Constantes.WARNING, AppUtils.getMessage(messageSource, "etudiant.warning.field.search"));
+			}
+		} catch (HibernateException he) {
+			model.addAttribute(Constantes.ERROR, AppUtils.getMessage(messageSource, "etudiant.error.search.post", he.getCause().getMessage()+"<br>"+he.getMessage()));
+			he.printStackTrace();
+		} catch (Exception e) {
+			model.addAttribute(Constantes.ERROR, AppUtils.getMessage(messageSource, "etudiant.error.search.post", e.getCause().getMessage()+"<br>"+e.getMessage()));
+			e.printStackTrace();
+		} finally {
+			model.addAttribute(Constantes.ETUDIANT, etudiantVO);
+			model.addAttribute(Constantes.CRITERIA_SEARCH, mapCriteriaSearch);
+			model.addAttribute(Constantes.ACTION, Constantes.ETUDIANT_SEARCH_MAPPING);
+		}
+		return Constantes.ETUDIANT_SEARCH_PAGE;
+	}
+	
 	
 }

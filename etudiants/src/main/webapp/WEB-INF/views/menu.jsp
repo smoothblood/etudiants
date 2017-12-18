@@ -15,5 +15,6 @@
 	<spring:message code="title.menu" text="title.menu"/>&nbsp;&nbsp;>>>&nbsp;&nbsp;
 	<a href="<c:url value='/listEtudiant'/>"><spring:message code="etudiant.menu.list.etd" text="etudiant.menu.list.etd"/></a>&nbsp;&nbsp;&nbsp;
 	<a href="<c:url value='/addFormEtudiant'/>"><spring:message code="etudiant.menu.form.etd" text="etudiant.menu.form.etd"/></a>&nbsp;&nbsp;&nbsp;
+	<a href="<c:url value='/searchEtudiant'/>"><spring:message code="etudiant.menu.search.etd" text="etudiant.menu.search.etd"/></a>&nbsp;&nbsp;&nbsp;
 </div>
 <br>

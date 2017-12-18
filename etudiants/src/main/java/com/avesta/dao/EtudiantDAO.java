@@ -1,6 +1,7 @@
 package com.avesta.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.avesta.vo.EtudiantVO;
 
@@ -9,8 +10,6 @@ public interface EtudiantDAO {
 	List<EtudiantVO> getAllEtudiants();
 	
 	EtudiantVO getEtudiantByNum(final String numEtd);
-	
-	Boolean isEtudiantUnique(final String numEtd);
 	
 	int ajoutEtudiant(final EtudiantVO etudiantVO);
 	
@@ -21,5 +20,7 @@ public interface EtudiantDAO {
 	String getMaxNumEtd();
 	
 	Object isEtudiantExistByNum(final String numEtd);
+	
+	List<EtudiantVO> getListEtudiantsByCriteria(final String searchField, final String criteriaSearch);
 	
 }

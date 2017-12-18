@@ -33,7 +33,7 @@
 					<td><c:out value="${etudiant.numEtd }" /></td>
 					<td><c:out value="${etudiant.nom }" /></td>
 					<td><c:out value="${etudiant.prenom }" /></td>
-					<td><c:out value="${etudiant.updatedDateString }" /></td>
+					<td><c:out value="${etudiant.createdDateString }" /></td>
 					<td><c:out value="${etudiant.updatedDateString }" /></td>
 					<td>
 						<a class="update" href="<c:url value='/updateFormEtudiant?numEtd=${etudiant.numEtd }'/>">EDIT</a>&nbsp;&nbsp;

@@ -1,7 +1,10 @@
 package com.avesta.dao;
 
 import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.transform.Transformers;
@@ -44,12 +47,6 @@ public class EtudiantDAOImpl implements EtudiantDAO {
 	}
 
 	@Override
-	public Boolean isEtudiantUnique(String numEtd) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public int ajoutEtudiant(EtudiantVO etudiantVO) {
 		Etudiant etudiant = new Etudiant();
 		etudiant.setNumEtd(etudiantVO.getNumEtd());
@@ -88,6 +85,19 @@ public class EtudiantDAOImpl implements EtudiantDAO {
 		return sessionFactory.getCurrentSession().createQuery("select 1 from Etudiant where numEtd = :numEtd").setParameter("numEtd", numEtd).uniqueResult();
 	}
 	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<EtudiantVO> getListEtudiantsByCriteria(String searchField, String criteriaSearch) {
+		String hqlColumns = getAllEtudiantHqlColumn(Constantes.EMPTY_STR);
+		StringBuilder hql = new StringBuilder();
+		hql.append("select ").append(hqlColumns).append(" from Etudiant where "+criteriaSearch+" like :searchField");
+		return sessionFactory.getCurrentSession()
+				.createQuery(hql.toString())
+				.setString("searchField", "%"+searchField+"%")
+				.setResultTransformer(Transformers.aliasToBean(EtudiantVO.class))
+				.list();
+	}
+	
 	/**
 	 * Description: Méthode récupére une liste des colonnes de la table "Etudiant" sous une chaine de caractère 
 	 * Date création: 9 déc. 2017 20:45:00 
@@ -116,5 +126,7 @@ public class EtudiantDAOImpl implements EtudiantDAO {
 		}
 		return sbColumns.toString();
 	}
+
+	
 
 }

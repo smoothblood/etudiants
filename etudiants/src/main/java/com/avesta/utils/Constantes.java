@@ -24,12 +24,19 @@ public interface Constantes {
 	static final String VIRGULE = ",";
 	static final String APOSTROPHE = "'";
 	static final String SLASH = "/";
+	static final String NONE = "NONE";
 	static final String AS = "as";
 	static final String EDIT = "edit";
 	static final String ACTION = "action";
 	static final String UTF8 = "UTF-8";
 	
+	static final String ETUDIANT_NUM_ETD = "numEtd";
+	static final String ETUDIANT_NOM = "nom";
+	static final String ETUDIANT_PRENOM = "prenom";
+	static final String ETUDIANT_CREATED_DATE = "createdDate";
+	static final String ETUDIANT_UPDATED_DATE = "updatedDate";
 	static final String ETUDIANT = "etudiant";
 	static final String LIST_ETUDIANT = "listEtudiant";
+	static final String CRITERIA_SEARCH = "criteriaSearch";
 	
 }
